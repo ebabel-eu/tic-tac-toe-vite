@@ -37,3 +37,17 @@
   color: #042B03;
   background-color: aquamarine;
 }
+
+.scores {
+  line-height: 3em;
+  margin: 1em 0 2.5em;
+}
+
+.scores span {
+  margin: 0 .25em;
+}
+
+.scores .vs {
+  font-size: 2em;
+  vertical-align: middle;
+}
