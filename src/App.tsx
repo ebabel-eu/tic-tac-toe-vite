@@ -65,7 +65,7 @@ function App() {
     if (player === defaultPlayer) {
       setPlayer(otherPlayer);
     } else {
-      setPlayer(1);
+      setPlayer(defaultPlayer);
     }
   }
 
