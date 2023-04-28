@@ -1,17 +1,20 @@
 import { useState, MouseEvent } from 'react'
 import './App.css'
-import { Cell, defaultCells, defaultPlayer, otherPlayer } from './constants';
+import { Cell, Player, defaultCells, defaultPlayer, otherPlayer } from './constants';
 import isGameWon from './isGameWon';
 
 function App() {
   const [cells, setCells] = useState(defaultCells);
-  const [player, setPlayer] = useState(defaultPlayer);
+  const [player, setPlayer] = useState(
+    isNaN(Number(localStorage['lastWinPlayer'])) ? defaultPlayer : Number(localStorage['lastWinPlayer']) as Player);
   const [message, setMessage] = useState('');
   const [scorePlayer1, setScorePlayer1] = useState(
     isNaN(Number(localStorage['scorePlayer1'])) ? 0 : Number(localStorage['scorePlayer1']));
   const [scorePlayer2, setScorePlayer2] = useState(
     isNaN(Number(localStorage['scorePlayer2'])) ? 0 : Number(localStorage['scorePlayer2']));
   const [endGame, setEndGame] = useState(false);
+  const [lastWinPlayer, setLastWinPlayer] = useState(
+    isNaN(Number(localStorage['lastWinPlayer'])) ? defaultPlayer : Number(localStorage['lastWinPlayer']) as Player);
       
   function isGameOver(): boolean {
     return cells.filter(cell => cell.face).length === cells.length;
@@ -22,11 +25,13 @@ function App() {
       const newScorePlayer1 = scorePlayer1 + 1;
       setScorePlayer1(newScorePlayer1);
       localStorage.setItem('scorePlayer1', String(newScorePlayer1));
+      localStorage.setItem('lastWinPlayer', String(defaultPlayer));
     }
     if (player === 2) {
       const newScorePlayer2 = scorePlayer2 + 1;
       setScorePlayer2(newScorePlayer2);
       localStorage.setItem('scorePlayer2', String(newScorePlayer2));
+      localStorage.setItem('lastWinPlayer', String(otherPlayer));
     }
   }
 
@@ -43,6 +48,7 @@ function App() {
     // Check if the game has been won by a player.
     if (isGameWon(cells)) {
       setMessage(`Player ${player} won!`);
+      setLastWinPlayer(player);
       increasePlayerScore(player);
       setEndGame(true);
       return;
@@ -67,7 +73,7 @@ function App() {
     const blankCells: Cell[] = [...defaultCells.map(cell => {
       cell.face = undefined; return cell;})];
     setCells(blankCells);
-    setPlayer(defaultPlayer);
+    setPlayer(lastWinPlayer);
     setMessage('');
     setEndGame(false);
   }
