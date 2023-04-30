@@ -8,5 +8,5 @@ Setting up a game of Tic Tac Toe using the `Vite` development tooling.
 `npm run dev`
 
 ## todo:
-- unit tests with Jest.
+- more unit tests with Vitest (compatible with Jest syntax).
 - end to end tests.
