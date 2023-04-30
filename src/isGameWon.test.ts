@@ -2,10 +2,6 @@ import { test, expect } from 'vitest';
 import isGameWon from './isGameWon';
 import { Cell } from './constants';
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(3).toBe(3);
-});
-
 test('isGameWon is a function', () => {
   expect(isGameWon).toBeTypeOf('function');
 });
