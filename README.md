@@ -15,6 +15,9 @@ To run the code from source, install its dependencies with `npm i`
 ## Unit tests
 To execute the unit tests, run `npm test`, and to see the test coverage, run `npm run coverage`
 
+## Storybook
+To see the storybook, run `npm run storybook`
+
 ## todo:
 - [ ] more unit tests with Vitest (compatible with Jest syntax).
 - [ ] end to end tests.
