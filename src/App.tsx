@@ -62,11 +62,7 @@ function App() {
     }
 
     // Toggle to the next player.
-    if (player === defaultPlayer) {
-      setPlayer(otherPlayer);
-    } else {
-      setPlayer(defaultPlayer);
-    }
+    setPlayer(player === defaultPlayer ? otherPlayer : defaultPlayer);
   }
 
   function startNewGame() {
